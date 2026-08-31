@@ -1,0 +1,31 @@
+<?php
+
+namespace Packages\{{package_name}}\Src\Repositories\Interfaces;
+
+use Packages\Core\Src\Repositories\Interfaces\RepositoryInterface;
+use Packages\{{package_name}}\Src\Models\{{model_name}};
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
+
+interface {{model_name}}RepositoryInterface extends RepositoryInterface
+{
+    /**
+     * Get paginated items with filters
+     */
+    public function paginate(array $filters = [], int $perPage = 15): LengthAwarePaginator;
+
+    /**
+     * Find by ID
+     */
+    public function findById(int $id): ?{{model_name}};
+
+    /**
+     * Get active items
+     */
+    public function getActive(): Collection;
+
+    /**
+     * Count by status
+     */
+    public function countByStatus(string $status): int;
+}

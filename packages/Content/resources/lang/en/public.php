@@ -1,0 +1,46 @@
+<?php
+
+return [
+    'news_heading' => 'News',
+    'recently_viewed_heading' => 'Recently viewed',
+    'no_posts_yet' => 'No posts yet.',
+    'categories_heading' => 'Categories',
+    'all_categories' => 'All',
+    'tags_heading' => 'Tags',
+    'latest_posts_heading' => 'Featured news',
+    'latest_posts_subtitle' => 'Articles currently in focus',
+    'see_all' => 'See all',
+
+    'home_meta_title' => 'Vietnam Medical Tourism Alliance',
+    'about_meta_title' => 'About VMTA',
+    'home_meta_description' => 'Vietnam Medical Tourism Alliance — specialties, hospitals, packages, medical-tourism advisory.',
+    'news_meta_title' => 'News',
+    'news_meta_description' => 'Latest updates on healthcare, tourism, and the VMTA alliance network.',
+    'achievement_meta_title' => 'Remarkable Medical Achievements in Vietnam',
+
+    'alliance' => [
+        'meta_title'        => 'Medical Tourism Alliance Network',
+        'meta_description'  => 'Alliance network of hospitals, resorts and strategic partners within the VMTA Medical Tourism ecosystem.',
+        'breadcrumb_home'   => 'Home',
+        'breadcrumb_label'  => 'Alliance Network',
+        'hero_title'        => 'VMTA Medical Tourism Alliance Network',
+        'hero_subtitle'     => 'An ecosystem linking hospitals, resorts and strategic partners',
+        'overview_title'    => 'NETWORK OVERVIEW',
+        'overview_subtitle' => 'VMTA – Vietnam Medical Tourism Alliance',
+        'standards_title'   => 'ALLIANCE STANDARDS',
+        'map_title'         => 'NETWORK MAP',
+        'join_title'        => 'Join the Alliance',
+        'join_intro'        => 'Register to become a VMTA network partner. Our team will reach out shortly.',
+        'form' => [
+            'name'         => 'Full name',
+            'email'        => 'Email',
+            'phone'        => 'Phone number',
+            'industry'     => 'Industry',
+            'company_name' => 'Organization / company',
+            'message'      => 'Proposal / message',
+            'consent'      => 'I consent to VMTA contacting me and processing my data per the privacy policy',
+            'submit'       => 'Submit registration',
+            'thank_you'    => 'Thank you! Your registration was received.',
+        ],
+    ],
+];

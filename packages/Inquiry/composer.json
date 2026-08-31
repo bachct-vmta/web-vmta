@@ -1,0 +1,31 @@
+{
+    "name": "packages/inquiry",
+    "description": "VMTA Inquiry — lead capture pipeline: Contact/Emergency/Quick forms + Coordinator assignment + email/notification.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nguyên Khôi",
+            "email": "admin@nguyenkhoi.dev"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "propaganistas/laravel-phone": "^6.0",
+        "spatie/laravel-honeypot": "^4.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Packages\\Inquiry\\Src\\": "src/",
+            "Packages\\Inquiry\\Database\\": "database/",
+            "Packages\\Inquiry\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Packages\\Inquiry\\Src\\Providers\\InquiryServiceProvider"
+            ]
+        }
+    }
+}

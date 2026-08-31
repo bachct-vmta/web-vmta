@@ -1,0 +1,10 @@
+<?php
+
+return [
+    // Messages
+    'created' => '{{model_name}} đã được tạo thành công.',
+    'updated' => '{{model_name}} đã được cập nhật thành công.',
+    'deleted' => '{{model_name}} đã được xóa thành công.',
+    'not_found' => 'Không tìm thấy {{model_name}}.',
+    'confirm_delete' => 'Bạn có chắc chắn muốn xóa {{model_name}} này?',
+];

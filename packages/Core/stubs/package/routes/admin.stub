@@ -1,0 +1,23 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use Packages\{{package_name}}\Src\Http\Controllers\{{model_name}}Controller;
+
+/*
+|--------------------------------------------------------------------------
+| {{package_name}} Admin Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::prefix(admin_route_prefix('{{package_lower}}'))
+    ->name(admin_route_name('{{package_lower}}.'))
+    ->middleware(['web', 'auth', 'permission:{{package_lower}}.index'])
+    ->group(function () {
+        Route::get('/', [{{model_name}}Controller::class, 'index'])->name('index');
+        Route::get('/create', [{{model_name}}Controller::class, 'create'])->name('create')->middleware('permission:{{package_lower}}.create');
+        Route::post('/', [{{model_name}}Controller::class, 'store'])->name('store')->middleware('permission:{{package_lower}}.create');
+        Route::get('/{id}', [{{model_name}}Controller::class, 'show'])->name('show');
+        Route::get('/{id}/edit', [{{model_name}}Controller::class, 'edit'])->name('edit')->middleware('permission:{{package_lower}}.edit');
+        Route::put('/{id}', [{{model_name}}Controller::class, 'update'])->name('update')->middleware('permission:{{package_lower}}.edit');
+        Route::delete('/{id}', [{{model_name}}Controller::class, 'destroy'])->name('destroy')->middleware('permission:{{package_lower}}.delete');
+    });

@@ -1,0 +1,120 @@
+<?php
+
+namespace Packages\{{package_name}}\Src\Http\Controllers;
+
+use Packages\Core\Src\Http\Controllers\BaseController;
+use Packages\{{package_name}}\Src\Repositories\Eloquent\{{model_name}}Repository;
+use Packages\{{package_name}}\Src\Services\{{model_name}}Service;
+use Packages\{{package_name}}\Src\Http\Requests\{{model_name}}Request;
+use Illuminate\Http\Request;
+
+class {{model_name}}Controller extends BaseController
+{
+    public function __construct(
+        private {{model_name}}Repository $repository,
+        private {{model_name}}Service $service
+    ) {}
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function index(Request $request)
+    {
+        $items = $this->service->paginateWithFilters(
+            filters: $request->only(['status']),
+            search: $request->get('search'),
+            sortBy: $request->get('sort_by', 'created_at'),
+            sortDir: $request->get('sort_dir', 'desc'),
+            perPage: $request->integer('per_page', 15)
+        );
+
+        return view('{{package_lower}}::admin.index', compact('items'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view('{{package_lower}}::admin.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store({{model_name}}Request $request)
+    {
+        $this->service->create($request->validated());
+
+        return $this->redirectWithSuccess(
+            route('admin.{{package_lower}}.index'),
+            __('{{package_lower}}::messages.created')
+        );
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(int $id)
+    {
+        $item = $this->repository->findById($id);
+
+        if (!$item) {
+            return $this->backWithError(__('{{package_lower}}::messages.not_found'));
+        }
+
+        return view('{{package_lower}}::admin.show', compact('item'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(int $id)
+    {
+        $item = $this->repository->findById($id);
+
+        if (!$item) {
+            return $this->backWithError(__('{{package_lower}}::messages.not_found'));
+        }
+
+        return view('{{package_lower}}::admin.edit', compact('item'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update({{model_name}}Request $request, int $id)
+    {
+        $item = $this->repository->findById($id);
+
+        if (!$item) {
+            return $this->backWithError(__('{{package_lower}}::messages.not_found'));
+        }
+
+        $this->service->update($id, $request->validated());
+
+        return $this->redirectWithSuccess(
+            route('admin.{{package_lower}}.index'),
+            __('{{package_lower}}::messages.updated')
+        );
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(int $id)
+    {
+        $item = $this->repository->findById($id);
+
+        if (!$item) {
+            return $this->backWithError(__('{{package_lower}}::messages.not_found'));
+        }
+
+        $this->service->delete($id);
+
+        return $this->redirectWithSuccess(
+            route('admin.{{package_lower}}.index'),
+            __('{{package_lower}}::messages.deleted')
+        );
+    }
+}

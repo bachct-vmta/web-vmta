@@ -1,0 +1,100 @@
+<?php
+
+namespace Packages\{{package_name}}\Src\Tables;
+
+use Packages\Core\Src\Tables\BaseTable;
+use Packages\{{package_name}}\Src\Models\{{model_name}};
+use Packages\Core\Src\Tables\Columns\TextColumn;
+use Packages\Core\Src\Tables\Columns\BadgeColumn;
+use Packages\Core\Src\Tables\Columns\BooleanColumn;
+use Packages\Core\Src\Tables\Columns\DateColumn;
+use Packages\Core\Src\Tables\Filters\SelectFilter;
+use Packages\Core\Src\Tables\Actions\Action;
+use Illuminate\Database\Eloquent\Builder;
+
+class {{model_name}}Table extends BaseTable
+{
+    protected ?string $heading = '{{package_name}} Management';
+    protected int $perPage = 15;
+    protected ?string $defaultSort = 'created_at';
+
+    /**
+     * Define the model for this table
+     */
+    protected function model(): string
+    {
+        return {{model_name}}::class;
+    }
+
+    /**
+     * Modify the base query
+     */
+    protected function query(Builder $query): Builder
+    {
+        return $query;
+    }
+
+    /**
+     * Define table columns
+     */
+    protected function columns(): array
+    {
+        return [
+            TextColumn::make('name')
+                ->label(__('{{package_lower}}::fields.name'))
+                ->searchable()
+                ->sortable(),
+
+            BadgeColumn::make('status')
+                ->label(__('{{package_lower}}::fields.status'))
+                ->colors([
+                    'active' => 'green',
+                    'inactive' => 'gray',
+                    'pending' => 'yellow',
+                ]),
+
+            DateColumn::make('created_at')
+                ->label(__('{{package_lower}}::fields.created_at'))
+                ->since()
+                ->sortable(),
+        ];
+    }
+
+    /**
+     * Define table filters
+     */
+    protected function filters(): array
+    {
+        return [
+            SelectFilter::make('status')
+                ->label(__('{{package_lower}}::fields.status'))
+                ->options([
+                    'active' => __('{{package_lower}}::enums.status.active'),
+                    'inactive' => __('{{package_lower}}::enums.status.inactive'),
+                    'pending' => __('{{package_lower}}::enums.status.pending'),
+                ])
+                ->placeholder(__('core::common.all')),
+        ];
+    }
+
+    /**
+     * Define row actions
+     */
+    protected function actions(): array
+    {
+        return [
+            Action::make('edit')
+                ->iconEdit()
+                ->route('admin.{{package_lower}}.edit')
+                ->permission('{{package_lower}}.edit'),
+
+            Action::make('delete')
+                ->iconDelete()
+                ->route('admin.{{package_lower}}.destroy')
+                ->method('DELETE')
+                ->confirm(__('{{package_lower}}::messages.confirm_delete'))
+                ->danger()
+                ->permission('{{package_lower}}.delete'),
+        ];
+    }
+}

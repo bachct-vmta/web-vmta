@@ -1,0 +1,74 @@
+<?php
+
+namespace Packages\{{package_name}}\Src\Services;
+
+use Packages\Core\Src\Services\BaseService;
+use Packages\{{package_name}}\Src\Repositories\Eloquent\{{model_name}}Repository;
+use Packages\{{package_name}}\Src\Models\{{model_name}};
+use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Collection;
+
+class {{model_name}}Service extends BaseService
+{
+    public function __construct(
+        private {{model_name}}Repository $repository
+    ) {}
+
+    /**
+     * Get paginated items with filters
+     */
+    public function paginateWithFilters(
+        array $filters = [],
+        ?string $search = null,
+        string $sortBy = 'created_at',
+        string $sortDir = 'desc',
+        int $perPage = 15
+    ): LengthAwarePaginator {
+        return $this->repository->paginateWithFilters($filters, $search, $sortBy, $sortDir, $perPage);
+    }
+
+    /**
+     * Find by ID or fail
+     */
+    public function findOrFail(int $id): {{model_name}}
+    {
+        return $this->repository->findOrFail($id);
+    }
+
+    /**
+     * Create new item
+     */
+    public function create(array $data): {{model_name}}
+    {
+        return DB::transaction(function () use ($data) {
+            return $this->repository->create($data);
+        });
+    }
+
+    /**
+     * Update item
+     */
+    public function update(int $id, array $data): bool
+    {
+        return DB::transaction(function () use ($id, $data) {
+            return $this->repository->update($id, $data);
+        });
+    }
+
+    /**
+     * Delete item
+     */
+    public function delete(int $id): bool
+    {
+        return $this->repository->delete($id);
+    }
+
+    /**
+     * Get active items
+     */
+    public function getActive(): Collection
+    {
+        return $this->repository->getActive();
+    }
+}

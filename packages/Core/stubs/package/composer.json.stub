@@ -1,0 +1,27 @@
+{
+    "name": "packages/{{package_lower}}",
+    "description": "{{package_name}} package for Laravel application",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "{{author_name}}",
+            "email": "{{author_email}}"
+        }
+    ],
+    "require": {
+        "php": "^8.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Packages\\{{package_name}}\\Src\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Packages\\{{package_name}}\\Src\\Providers\\{{package_name}}ServiceProvider"
+            ]
+        }
+    }
+}

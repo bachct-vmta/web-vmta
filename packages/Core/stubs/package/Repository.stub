@@ -1,0 +1,55 @@
+<?php
+
+namespace Packages\{{package_name}}\Src\Repositories\Eloquent;
+
+use Packages\Core\Src\Repositories\Eloquent\BaseRepository;
+use Packages\{{package_name}}\Src\Repositories\Interfaces\{{model_name}}RepositoryInterface;
+use Packages\{{package_name}}\Src\Models\{{model_name}};
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
+
+class {{model_name}}Repository extends BaseRepository implements {{model_name}}RepositoryInterface
+{
+    /**
+     * Get the model class name
+     */
+    public function getModel(): string
+    {
+        return {{model_name}}::class;
+    }
+
+    /**
+     * Get paginated items with filters
+     */
+    public function paginate(array $filters = [], int $perPage = 15): LengthAwarePaginator
+    {
+        return $this->model
+            ->filter($filters)
+            ->latest()
+            ->paginate($perPage);
+    }
+
+    /**
+     * Find by ID with relationships
+     */
+    public function findById(int $id): ?{{model_name}}
+    {
+        return $this->model->find($id);
+    }
+
+    /**
+     * Get active items
+     */
+    public function getActive(): Collection
+    {
+        return $this->model->where('status', 'active')->get();
+    }
+
+    /**
+     * Count by status
+     */
+    public function countByStatus(string $status): int
+    {
+        return $this->model->where('status', $status)->count();
+    }
+}

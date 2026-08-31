@@ -1,0 +1,32 @@
+{
+    "name": "packages/catalog",
+    "description": "VMTA Catalog — Service, TourPackage, Combo, Specialty, Destination, Partner. Translatable VI/EN + Scout/TNTSearch.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nguyên Khôi",
+            "email": "admin@nguyenkhoi.dev"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "astrotomic/laravel-translatable": "^11.16",
+        "laravel/scout": "^11.0",
+        "spatie/laravel-query-builder": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Packages\\Catalog\\Src\\": "src/",
+            "Packages\\Catalog\\Database\\": "database/",
+            "Packages\\Catalog\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Packages\\Catalog\\Src\\Providers\\CatalogServiceProvider"
+            ]
+        }
+    }
+}

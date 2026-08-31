@@ -1,0 +1,43 @@
+# {{package_name}} Package
+
+Package for managing {{package_name}} functionality.
+
+## Features
+
+- CRUD operations for {{model_name}}
+- Admin panel integration
+- Permission-based access control
+
+## Structure
+
+```
+{{package_name}}/
+├── configs/
+│   └── permissions.php
+├── database/migrations/
+├── resources/views/
+├── routes/
+│   ├── web.php
+│   └── admin.php
+└── src/
+    ├── Http/Controllers/
+    ├── Models/
+    ├── Providers/
+    ├── Repositories/
+    └── Services/
+```
+
+## Usage
+
+Package is automatically loaded via ServiceProvider in `composer.json`.
+
+### Routes
+
+Admin routes are available at `/admin/{{package_lower}}/`
+
+### Permissions
+
+- `{{package_lower}}.index` - View list
+- `{{package_lower}}.create` - Create new
+- `{{package_lower}}.edit` - Edit existing
+- `{{package_lower}}.delete` - Delete

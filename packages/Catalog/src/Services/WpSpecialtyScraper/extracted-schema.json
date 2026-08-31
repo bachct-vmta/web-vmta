@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "WP Specialty Extracted Shape",
+  "type": "object",
+  "required": ["hero_h1", "intro_h2", "intro_lead", "intro_body_html"],
+  "properties": {
+    "hero_h1": { "type": "string" },
+    "hero_image_url": { "type": ["string", "null"] },
+    "icon_url": { "type": ["string", "null"] },
+    "breadcrumb_label": { "type": ["string", "null"] },
+
+    "intro_h2": { "type": "string" },
+    "intro_lead": { "type": "string" },
+    "intro_body_html": { "type": "string" },
+    "intro_image_url": { "type": ["string", "null"] },
+
+    "strengths_h2_line1": { "type": ["string", "null"] },
+    "strengths_h2_line2": { "type": ["string", "null"] },
+    "strengths": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "image_url": { "type": ["string", "null"] },
+          "bullets": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+
+    "hospitals_h2_line1": { "type": ["string", "null"] },
+    "hospitals_h2_line2": { "type": ["string", "null"] },
+    "hospitals_subtitle": { "type": ["string", "null"] },
+    "hospitals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "image_url": { "type": ["string", "null"] },
+          "bullets": { "type": "array", "items": { "type": "string" } },
+          "cta_primary": {
+            "type": ["object", "null"],
+            "properties": {
+              "label": { "type": "string" },
+              "url": { "type": "string" }
+            }
+          },
+          "cta_secondary": {
+            "type": ["object", "null"],
+            "properties": {
+              "label": { "type": "string" },
+              "url": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+
+    "lead_h2_line1": { "type": ["string", "null"] },
+    "lead_h2_line2": { "type": ["string", "null"] },
+    "lead_subtitle": { "type": ["string", "null"] },
+    "lead_body_html": { "type": ["string", "null"] },
+    "lead_demand_placeholder": { "type": ["string", "null"] },
+    "lead_submit_label": { "type": ["string", "null"] }
+  }
+}

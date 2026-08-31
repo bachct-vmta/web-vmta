@@ -1,0 +1,9 @@
+<?php
+
+return [
+    'status' => [
+        'active' => 'Hoạt động',
+        'inactive' => 'Không hoạt động',
+        'pending' => 'Đang chờ',
+    ],
+];

@@ -1,0 +1,315 @@
+/**
+ * Core Table Builder Styles
+ * Modern card-based table design with dark mode support
+ */
+
+/* ============================================
+   CSS Variables (Custom Properties)
+   ============================================ */
+:root {
+    --primary: #3b82f6;
+    --primary-hover: #2563eb;
+    --background-light: #f1f5f9;
+    --background-dark: #0f172a;
+}
+
+/* ============================================
+   Custom Checkbox (Circular)
+   ============================================ */
+.custom-checkbox {
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 9999px;
+    border-color: rgb(203 213 225);
+    color: var(--primary);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    background-color: white;
+}
+
+.custom-checkbox:focus {
+    --tw-ring-color: var(--primary);
+    --tw-ring-offset-width: 0;
+}
+
+.dark .custom-checkbox {
+    background-color: rgb(51 65 85);
+    border-color: rgb(71 85 105);
+}
+
+/* ============================================
+   User Card Selection State
+   ============================================ */
+.user-card:has(input[type="checkbox"]:checked) {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.2);
+    background-color: rgba(239, 246, 255, 0.5);
+}
+
+.dark .user-card:has(input[type="checkbox"]:checked) {
+    background-color: rgba(59, 130, 246, 0.1);
+}
+
+/* ============================================
+   Floating Action Bar Animation
+   ============================================ */
+.action-bar {
+    transform: translateX(-50%);
+}
+
+.action-bar-enter {
+    animation: actionBarEnter 0.3s ease-out forwards;
+}
+
+.action-bar-leave {
+    animation: actionBarLeave 0.2s ease-in forwards;
+}
+
+@keyframes actionBarEnter {
+    from {
+        transform: translateX(-50%) translateY(1rem) scale(0.95);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(-50%) translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes actionBarLeave {
+    from {
+        transform: translateX(-50%) translateY(0) scale(1);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(-50%) translateY(1rem) scale(0.95);
+        opacity: 0;
+    }
+}
+
+/* ============================================
+   Sparkline Animation (for charts)
+   ============================================ */
+.sparkline-path {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    animation: sparklineDash 2s ease-in-out forwards;
+}
+
+@keyframes sparklineDash {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+/* ============================================
+   Material Symbols Adjustments
+   ============================================ */
+.material-symbols-rounded,
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+}
+
+/* Filled icons for certain states */
+.material-symbols-rounded.filled,
+.material-symbols-outlined.filled {
+    font-variation-settings:
+        'FILL' 1,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+}
+
+/* ============================================
+   Table Card Hover Effects
+   ============================================ */
+.user-card {
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.user-card:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================
+   Pagination Buttons
+   ============================================ */
+.pagination-btn {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    transition: all 0.15s ease;
+}
+
+.pagination-btn:hover:not(:disabled) {
+    background-color: rgb(248 250 252);
+}
+
+.dark .pagination-btn:hover:not(:disabled) {
+    background-color: rgb(51 65 85);
+}
+
+.pagination-btn.active {
+    background-color: var(--primary);
+    color: white;
+    box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3);
+}
+
+/* ============================================
+   Filter Bar Styling
+   ============================================ */
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: rgb(248 250 252);
+    padding: 0.25rem;
+    border-radius: 0.75rem;
+    box-shadow: inset 0 0 0 1px rgb(226 232 240);
+}
+
+.dark .filter-group {
+    background-color: rgb(15 23 42);
+    box-shadow: inset 0 0 0 1px rgb(51 65 85);
+}
+
+.filter-divider {
+    width: 1px;
+    height: 1rem;
+    background-color: rgb(226 232 240);
+}
+
+.dark .filter-divider {
+    background-color: rgb(51 65 85);
+}
+
+/* ============================================
+   Search Input Focus States
+   ============================================ */
+.search-input:focus-within .search-icon {
+    color: var(--primary);
+}
+
+/* ============================================
+   Badge/Tag Styles
+   ============================================ */
+.badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.badge-primary {
+    background-color: rgb(239 246 255);
+    color: rgb(37 99 235);
+    box-shadow: inset 0 0 0 1px rgb(219 234 254);
+}
+
+.badge-purple {
+    background-color: rgb(250 245 255);
+    color: rgb(147 51 234);
+    box-shadow: inset 0 0 0 1px rgb(243 232 255);
+}
+
+.badge-gray {
+    background-color: rgb(248 250 252);
+    color: rgb(71 85 105);
+    box-shadow: inset 0 0 0 1px rgb(226 232 240);
+}
+
+.dark .badge-primary {
+    background-color: rgba(37, 99, 235, 0.2);
+    color: rgb(96 165 250);
+    box-shadow: inset 0 0 0 1px rgba(37, 99, 235, 0.3);
+}
+
+.dark .badge-purple {
+    background-color: rgba(147, 51, 234, 0.2);
+    color: rgb(192 132 252);
+    box-shadow: inset 0 0 0 1px rgba(147, 51, 234, 0.3);
+}
+
+.dark .badge-gray {
+    background-color: rgb(51 65 85);
+    color: rgb(148 163 184);
+    box-shadow: inset 0 0 0 1px rgb(71 85 105);
+}
+
+/* ============================================
+   Avatar Ring Effects
+   ============================================ */
+.avatar-ring {
+    box-shadow: 0 0 0 4px rgb(248 250 252);
+}
+
+.dark .avatar-ring {
+    box-shadow: 0 0 0 4px rgba(30, 41, 59, 0.5);
+}
+
+/* ============================================
+   Empty State
+   ============================================ */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 3rem;
+    text-align: center;
+}
+
+.empty-state-icon {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 9999px;
+    background-color: rgb(241 245 249);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dark .empty-state-icon {
+    background-color: rgb(51 65 85);
+}
+
+/* ============================================
+   Responsive Column Visibility
+   ============================================ */
+@media (max-width: 768px) {
+    .md\:hidden-mobile {
+        display: none;
+    }
+}
+
+/* ============================================
+   Alpine.js Cloak
+   ============================================ */
+[x-cloak] {
+    display: none !important;
+}
+
+/* ============================================
+   Print Styles
+   ============================================ */
+@media print {
+    .action-bar,
+    .custom-checkbox,
+    .filter-group,
+    button[type="submit"] {
+        display: none !important;
+    }
+    
+    .user-card {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+}

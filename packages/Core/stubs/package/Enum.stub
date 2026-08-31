@@ -1,0 +1,44 @@
+<?php
+
+namespace Packages\{{package_name}}\Src\Enums;
+
+enum {{model_name}}Status: string
+{
+    case ACTIVE = 'active';
+    case INACTIVE = 'inactive';
+    case PENDING = 'pending';
+
+    /**
+     * Get human-readable label
+     */
+    public function label(): string
+    {
+        return match($this) {
+            self::ACTIVE => __('{{package_lower}}::enums.status.active'),
+            self::INACTIVE => __('{{package_lower}}::enums.status.inactive'),
+            self::PENDING => __('{{package_lower}}::enums.status.pending'),
+        };
+    }
+
+    /**
+     * Get color for badges
+     */
+    public function color(): string
+    {
+        return match($this) {
+            self::ACTIVE => 'green',
+            self::INACTIVE => 'gray',
+            self::PENDING => 'yellow',
+        };
+    }
+
+    /**
+     * Get all cases as options for select
+     */
+    public static function options(): array
+    {
+        return collect(self::cases())->mapWithKeys(fn($case) => [
+            $case->value => $case->label()
+        ])->toArray();
+    }
+}

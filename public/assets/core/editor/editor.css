@@ -1,0 +1,131 @@
+/* CKEditor 5 wrapper styles */
+.ck-editor-wrapper {
+    position: relative;
+}
+
+.ck-editor-wrapper .editor-media-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 6px;
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #475569;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+
+.ck-editor-wrapper .editor-media-btn:hover {
+    background: #e2e8f0;
+    color: #1e293b;
+}
+
+.ck.ck-editor__editable_inline {
+    min-height: 200px;
+    max-height: 600px;
+    overflow-y: auto;
+    padding: 16px 20px !important;
+    line-height: 1.65;
+    color: #1e293b;
+    font-size: 14px;
+}
+
+/*
+ * Tailwind's preflight strips list-style/padding from ul/ol globally.
+ * Restore proper typography inside the CKEditor editable area (.ck-content).
+ */
+.ck-content ul,
+.ck-content ol {
+    padding-left: 1.5em;
+    margin: 0.5em 0;
+}
+
+.ck-content ul { list-style: disc outside; }
+.ck-content ol { list-style: decimal outside; }
+.ck-content ul ul { list-style: circle outside; }
+.ck-content ul ul ul { list-style: square outside; }
+
+.ck-content li {
+    display: list-item;
+    margin: 0.25em 0;
+}
+
+.ck-content p {
+    margin: 0 0 0.75em;
+}
+
+.ck-content h1,
+.ck-content h2,
+.ck-content h3,
+.ck-content h4 {
+    font-weight: 600;
+    line-height: 1.3;
+    margin: 1em 0 0.5em;
+    color: #0f172a;
+}
+
+.ck-content h1 { font-size: 1.75em; }
+.ck-content h2 { font-size: 1.4em; }
+.ck-content h3 { font-size: 1.2em; }
+.ck-content h4 { font-size: 1.05em; }
+
+.ck-content blockquote {
+    border-left: 3px solid #cbd5e1;
+    margin: 0.75em 0;
+    padding: 0.25em 0 0.25em 1em;
+    color: #475569;
+    font-style: italic;
+}
+
+.ck-content a {
+    color: #2563eb;
+    text-decoration: underline;
+}
+
+.ck-content table {
+    border-collapse: collapse;
+    margin: 0.5em 0;
+}
+
+.ck-content table td,
+.ck-content table th {
+    border: 1px solid #cbd5e1;
+    padding: 6px 10px;
+}
+
+.ck-content table th {
+    background: #f1f5f9;
+    font-weight: 600;
+}
+
+.ck-content img {
+    max-width: 100%;
+    height: auto;
+    display: inline-block;
+}
+
+.ck-content code {
+    background: #f1f5f9;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+.ck-content pre {
+    background: #0f172a;
+    color: #e2e8f0;
+    padding: 12px 16px;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: 0.75em 0;
+}
+
+.ck-content hr {
+    border: none;
+    border-top: 1px solid #e2e8f0;
+    margin: 1em 0;
+}

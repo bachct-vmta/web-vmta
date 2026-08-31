@@ -1,0 +1,32 @@
+{
+    "name": "packages/dental",
+    "description": "VMTA Dental — Category, Facility, Service cho hạng mục Khám nha. Translatable VI/EN.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nguyên Khôi",
+            "email": "admin@nguyenkhoi.dev"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "astrotomic/laravel-translatable": "^11.16",
+        "packages/core": "@dev",
+        "packages/content": "@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Packages\\Dental\\Src\\": "src/",
+            "Packages\\Dental\\Database\\": "database/",
+            "Packages\\Dental\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Packages\\Dental\\Src\\Providers\\DentalServiceProvider"
+            ]
+        }
+    }
+}

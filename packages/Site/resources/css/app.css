@@ -1,0 +1,546 @@
+@import "tailwindcss";
+
+@plugin "@tailwindcss/typography";
+@plugin "@tailwindcss/forms";
+
+/*
+ * Tell Tailwind v4 to scan Blade templates across all packages so utility
+ * classes used in package views are emitted.
+ */
+@source "../../../../packages/*/resources/views/**/*.blade.php";
+@source "../../../../resources/views/**/*.blade.php";
+@source "../../../../vendor/packages/*/resources/views/**/*.blade.php";
+
+@import "./medical-case-detail.css";
+
+/* Ẩn phần tử Alpine trước khi khởi tạo xong */
+[x-cloak] {
+  display: none !important;
+}
+
+/* Custom fonts cho about page (UTM Helve + Sharp Grotesk Bold) */
+@font-face {
+  font-family: "UTM Helve";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/utm-helve-regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "UTM Helve";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/utm-helve-bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "#9Slide03 IcielSamsung Sharp Bo";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/sharp-grotesk-bold.ttf") format("truetype");
+}
+
+/*
+ * VMTA brand tokens — available as bg-vmta-teal, text-vmta-red, bg-vmta-cream,
+ * font-display etc. across all Blade templates.
+ */
+@theme {
+  --color-vmta-teal: #0b7f7c;
+  --color-vmta-red: #d31e45;
+  --color-vmta-cream: #f8f5ef;
+  --font-display: "Bebas Neue", "Oswald", system-ui, sans-serif;
+
+  /* About page typography (matches vmta.vn font-family names) + Flatsome breakpoints */
+  --font-sharp-bo: "#9Slide03 IcielSamsung Sharp Bo", "UTM Helve", Arial, sans-serif;
+  --font-utm-helve: "UTM Helve", Arial, sans-serif;
+  --breakpoint-sm-fs: 550px;
+  --breakpoint-md-fs: 850px;
+  --breakpoint-lg-fs: 1200px;
+
+  /* Custom scale presets */
+  --scale-150: 1.5;
+  --scale-250: 2.5;
+}
+
+/* Typography family — toàn site dùng UTM Helve (match vmta.vn) */
+html, body {
+  font-family: 'UTM Helve', Arial, sans-serif;
+}
+h3, h4, h5, h6,
+nav, .nav, .header-nav, .mobile-nav,
+button, .button, .btn {
+  font-family: 'UTM Helve', Arial, sans-serif;
+}
+
+.vmta-header-inner {
+  height: 70px;
+  padding-left: 18px;
+  padding-right: 18px;
+}
+
+.vmta-header-logo {
+  width: 105px;
+  height: 54px;
+  object-fit: contain;
+}
+
+.alliance-overview-network {
+  max-width: 236px;
+}
+
+.alliance-overview-pillars {
+  max-width: 338px;
+}
+
+@media (max-width: 549.98px) {
+  #section-alliance-overview {
+    padding-top: 53px !important;
+  }
+
+  #section-alliance-hero .alliance-hero-title {
+    font-size: 17px !important;
+    line-height: 1.2 !important;
+  }
+
+  #section-alliance-overview h2 {
+    font-size: 17.5px !important;
+    line-height: 1.4 !important;
+  }
+
+  #section-alliance-overview .mb-10 {
+    margin-bottom: 22px !important;
+  }
+
+  #section-alliance-overview .mb-10 p,
+  #section-alliance-overview > div > .font-utm-helve p {
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+  }
+
+  #section-alliance-overview .mb-10 p {
+    margin-top: 0 !important;
+  }
+
+  .alliance-overview-network {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  .alliance-overview-network h3 {
+    font-size: 11.375px !important;
+    line-height: 1.25 !important;
+  }
+
+  .alliance-overview-pillars > div {
+    min-height: 63px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }
+
+  .alliance-overview-pillars {
+    margin-top: 22px !important;
+  }
+
+  .alliance-overview-pillars h4 {
+    font-size: 11.375px !important;
+  }
+
+  .alliance-overview-pillars p {
+    font-size: 15.75px !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .vmta-header-inner {
+    height: 100px;
+    padding-left: 35px;
+    padding-right: 35px;
+  }
+
+  .vmta-header-logo {
+    width: 140px;
+    height: 72px;
+  }
+}
+
+@media (min-width: 550px) {
+  .alliance-overview-network {
+    max-width: 375px;
+  }
+
+  .alliance-overview-pillars {
+    max-width: none;
+  }
+}
+
+/* =============================================
+   VMTA About page helpers (port từ vmta.css gốc)
+   ============================================= */
+
+/* Fluid font-size scale dùng clamp() — match nguyên bản vmta.css
+   Note: tracking từ vmta.test gốc = font-size × 5% (letter-spacing) */
+.fs-vmta-85, .fs-vmta-85 * { font-size: clamp(1.25rem, 4vw, 3.125rem) !important; line-height: 1; letter-spacing: 0.05em; }
+.fs-vmta-80, .fs-vmta-80 * { font-size: clamp(1.25rem, 3.8vw, 2.875rem) !important; line-height: 1.4; letter-spacing: 0.05em; }
+.fs-vmta-72, .fs-vmta-72 * { font-size: clamp(1.125rem, 3.4vw, 2.625rem) !important; line-height: 1.4; letter-spacing: 0.05em; }
+.fs-vmta-60, .fs-vmta-60 * { font-size: clamp(1.125rem, 3vw, 2.25rem) !important; line-height: 1.4; letter-spacing: 0.05em; }
+.fs-vmta-27, .fs-vmta-27 * { font-size: clamp(0.8125rem, 1.2vw, 1.125rem) !important; line-height: 1.4; letter-spacing: 0.05em; }
+.fs-vmta-25, .fs-vmta-25 * { font-size: clamp(0.8125rem, 1.1vw, 1rem) !important; line-height: 1.4; letter-spacing: 0.05em; }
+.fs-vmta-20, .fs-vmta-20 * { font-size: clamp(0.875rem, 1.4vw, 1.25rem) !important; line-height: 1.6; }
+/* Compact 20 — matches original vmta.css .fs-20 (12-15px). Used for footer menu titles
+   where fs-vmta-20 (14-20px) is too large. */
+.fs-vmta-compact-20, .fs-vmta-compact-20 * { font-size: clamp(0.75rem, 1vw, 0.9375rem) !important; line-height: 1; letter-spacing: 0.03em; }
+
+/* Font-weight helpers matching vmta.css h1, h2 { font-weight: 700 } */
+.font-sharp-bo h1,
+.font-sharp-bo h2,
+h1.font-sharp-bo,
+h2.font-sharp-bo { font-weight: 700; }
+
+/* Section 3 (Giá trị cốt lõi) — bg image rất mờ trên nền trắng */
+.vmta-bg-filter-5 .vmta-bg-img { opacity: 0.05; }
+.vmta-bg-filter-15 .vmta-bg-img { opacity: 0.15; }
+.vmta-bg-filter-20 .vmta-bg-img { opacity: 0.2; }
+.vmta-bg-filter-40 .vmta-bg-img { opacity: 0.4; }
+
+/* Scale transforms cho bg image (match .ss-scale-15, .ss-scale-25) */
+.vmta-bg-scale-15 .vmta-bg-img { transform: scale(1.5); }
+.vmta-bg-scale-25 .vmta-bg-img { transform: scale(2.5); }
+
+/* Hero bg image opacity 20% */
+.vmta-banner-hero .vmta-bg-img { opacity: 0.2; }
+
+/* Icon-box dividers (Section 3, 4, 6) */
+.vmta-col-gia-tri {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.875rem;
+  align-items: stretch;
+}
+.vmta-col-gia-tri > .vmta-icon-box {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+.vmta-col-gia-tri.vmta-cols-3 > .vmta-icon-box {
+  max-width: calc((100% - (1.875rem * 2)) / 3);
+}
+.vmta-col-gia-tri.vmta-cols-4 > .vmta-icon-box {
+  max-width: calc((100% - (1.875rem * 3)) / 4);
+}
+.vmta-col-gia-tri > .vmta-icon-box:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: -0.9375rem;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background: #0b7f7c;
+}
+@media (max-width: 991.98px) {
+  .vmta-col-gia-tri.vmta-cols-3 > .vmta-icon-box,
+  .vmta-col-gia-tri.vmta-cols-4 > .vmta-icon-box {
+    max-width: calc((100% - 1.875rem) / 2);
+  }
+  .vmta-col-gia-tri > .vmta-icon-box:not(:last-child)::after { display: none; }
+}
+@media (max-width: 767.98px) {
+  .vmta-col-gia-tri {
+    flex-direction: column;
+  }
+  .vmta-col-gia-tri > .vmta-icon-box {
+    max-width: 100% !important;
+    flex: 0 0 100%;
+    width: 100%;
+  }
+}
+
+/* Checkmark bullets cho Section 5 (KHÁC BIỆT) */
+.vmta-khacbiet p {
+  position: relative;
+  padding-left: 1.875rem;
+  margin: 0.625rem 0;
+  display: flex;
+  align-items: center;
+  text-align: left;
+}
+.vmta-khacbiet p::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.125rem;
+  height: 1.125rem;
+  background: #fff;
+  color: #0b7f7c;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Banner padding-top responsive tiers (match vmta.css line 2039-2046, 2073, 2193, 2427) */
+.vmta-banner {
+  padding-top: 80vh;
+  position: relative;
+}
+@media (max-width: 1199.98px) {
+  .vmta-banner { padding-top: 90vh !important; }
+  .vmta-banner.vmta-banner-mid { padding-top: 25rem !important; }
+}
+@media (max-width: 991.98px) {
+  .vmta-banner.vmta-banner-mid { padding-top: 22rem !important; }
+}
+@media (max-width: 767.98px) {
+  .vmta-banner { padding-top: 25rem !important; }
+  .vmta-banner.vmta-banner-mid { padding-top: 18rem !important; }
+}
+@media (max-width: 575.98px) {
+  .vmta-banner.vmta-banner-mid { padding-top: 14rem !important; }
+}
+
+/* Body justified (>=1200px), left-aligned (<1200px) — match vmta.css line 79 + 2005 */
+.vmta-about-page p { text-align: justify; }
+@media (max-width: 1199.98px) {
+  .vmta-about-page p,
+  .vmta-about-page { text-align: left !important; }
+}
+
+/* Letter-spacing reset for headings (match line 345-348) */
+.vmta-letter-spacing-0,
+.vmta-letter-spacing-0 * { letter-spacing: 0 !important; }
+
+/* ── Marquee animation ─────────────────────────────────────────────────── */
+.vmta-marquee {
+  overflow: hidden;
+}
+
+.vmta-marquee-track {
+  display: flex;
+  gap: 4rem;
+  width: max-content;
+  animation: vmta-marquee 40s linear infinite;
+  will-change: transform;
+}
+
+@keyframes vmta-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vmta-marquee-track {
+    animation: none;
+    transform: none;
+  }
+}
+
+/* =============================================
+   FOOTER background image (match vmta.test .ss-footer .fill img)
+   ============================================= */
+.ss-footer .fill img {
+  opacity: 0.2;
+  transform: scale(1.5);
+}
+
+/* =============================================
+   CUSTOM POST GRID (port từ vmta.css line 1735-1810)
+   Dùng cho section "Tin tức nổi bật" trên trang chủ
+   ============================================= */
+.custom-post-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 849px) {
+  .custom-post-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 549px) {
+  .custom-post-grid { grid-template-columns: 1fr; }
+}
+
+.post-item {
+  background: #fff;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: 0.3s;
+}
+.post-item:hover { transform: translateY(-5px); }
+
+.post-thumb img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 0.75rem;
+}
+
+.post-content { padding: 1rem 0; }
+
+.post-author {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #0b7f7c;
+  margin-bottom: 0.5rem;
+}
+.post-author img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.post-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  font-family: 'UTM Helve', Arial, sans-serif;
+  line-height: 1.3;
+  margin: 0.5rem 0;
+}
+.post-title a {
+  text-decoration: none;
+  color: #0b7f7c;
+  font-weight: inherit;
+  font-family: inherit;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  text-align: left;
+}
+
+.post-excerpt {
+  margin-bottom: 0.75rem;
+  color: #0b7f7c;
+  min-height: 3.75rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.post-meta {
+  color: #0b7f7c;
+  border-bottom: 2px solid #0b7f7c;
+  padding-bottom: 0.5rem;
+}
+.post-meta * { color: #0b7f7c; }
+
+/*
+ * Admin-authored tables on the service detail page — Figma node 39:36, scaled by
+ * 1248/1563 ≈ 0.798: blocks 1227 → 980 wide, price columns 409/205/205/266/142 →
+ * 327/164/164/212/113, rows 68 → 54, headers 96/162 → 77/129, 28px → 22px text.
+ * Styling lives here rather than in utility classes because the markup comes from
+ * CKEditor and cannot carry classes of its own.
+ */
+.vmta-rich-table figure.table,
+.vmta-rich-table figure {
+  margin: 0;
+  width: 100%;
+}
+
+.vmta-rich-table table {
+  /* The wrapper spans the content column so the table's own border never triggers
+     a stray scrollbar. */
+  width: 100%;
+  max-width: 980px;
+  margin-inline: auto;
+  min-width: 720px;
+  /* `separate` rather than `collapse`: a collapsed table drops its own outer border
+     once border-radius and overflow clip it, which leaves the frame open. */
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid #0b7f7c;
+  border-radius: 8px;
+  overflow: hidden;
+  table-layout: fixed;
+}
+
+/* Internal rules only; the table element draws the outer frame. */
+.vmta-rich-table th,
+.vmta-rich-table td {
+  border-right: 1px solid #0b7f7c;
+  border-bottom: 1px solid #0b7f7c;
+  font-size: 14px;
+  line-height: 18px;
+  color: #5d5d5d;
+  text-align: center;
+  vertical-align: middle;
+  padding: 6px 10px;
+}
+
+/* Price list */
+.vmta-rich-table th:last-child,
+.vmta-rich-table td:last-child { border-right: 0; }
+
+.vmta-rich-table tbody tr:last-child td { border-bottom: 0; }
+
+/*
+ * No price-specific min-width: pinning it at the design's 980 forced a few pixels
+ * of scroll on a 1024 screen. table-layout: fixed scales the column widths
+ * proportionally instead, and the shared 720 floor still triggers a scroll when
+ * the table would genuinely become unreadable.
+ */
+
+/*
+ * CKEditor emits no colgroup, so the design's 409/205/205/266/142 split is applied
+ * to the header cells; table-layout: fixed propagates it to the rows below.
+ * Percentages rather than pixels: fixed widths plus the table's own border added up
+ * to a couple of pixels more than the column allows, which showed as a pointless
+ * scrollbar just under 1280.
+ */
+.vmta-rich-table--price thead th:nth-child(1) { width: 33.37%; }
+.vmta-rich-table--price thead th:nth-child(2) { width: 16.73%; }
+.vmta-rich-table--price thead th:nth-child(3) { width: 16.73%; }
+.vmta-rich-table--price thead th:nth-child(4) { width: 21.63%; }
+.vmta-rich-table--price thead th:nth-child(5) { width: 11.54%; }
+
+.vmta-rich-table--price thead th { height: 129px; font-size: 22px; font-weight: 700; color: #0b7f7c; }
+.vmta-rich-table--price thead th small { display: block; font-size: 14px; font-weight: 400; }
+.vmta-rich-table--price tbody tr { height: 54px; }
+.vmta-rich-table--price tbody td:first-child { text-align: left; padding-left: 21px; }
+.vmta-rich-table--price tbody td:nth-child(4) { font-weight: 700; color: #d31e45; }
+
+/* A row merged across every column is a group heading (RĂNG TOÀN SỨ). */
+.vmta-rich-table--price tbody tr:has(td[colspan]:only-child) td {
+  font-size: 22px;
+  font-weight: 700;
+  color: #0b7f7c;
+  text-align: left;
+  padding-left: 21px;
+}
+
+/* Comparison block */
+.vmta-rich-table--comparison thead th {
+  height: 77px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  background: #0b7f7c;
+}
+
+.vmta-rich-table--comparison tbody td {
+  padding: 21px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.vmta-rich-table--comparison tbody ul {
+  margin: 0;
+  padding-left: 20px;
+  list-style: disc;
+}
+
+.vmta-rich-table--comparison tbody li { margin-top: 4px; }
+.vmta-rich-table--comparison tbody li::after { content: none; }

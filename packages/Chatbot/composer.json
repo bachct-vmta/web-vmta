@@ -1,0 +1,30 @@
+{
+    "name": "packages/chatbot",
+    "description": "VMTA Chatbot — server-side proxy for Tourism Chatbot API with SSE streaming, session management, and overflow handoff.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nguyên Khôi",
+            "email": "admin@nguyenkhoi.dev"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "guzzlehttp/guzzle": "^7.0",
+        "predis/predis": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Packages\\Chatbot\\Src\\": "src/",
+            "Packages\\Chatbot\\Database\\": "database/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Packages\\Chatbot\\Src\\Providers\\ChatbotServiceProvider"
+            ]
+        }
+    }
+}

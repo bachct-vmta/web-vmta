@@ -1,0 +1,30 @@
+{
+    "name": "packages/content",
+    "description": "VMTA Content CMS — Page, Post, Category, Tag, Menu. Translatable VI/EN.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nguyên Khôi",
+            "email": "admin@nguyenkhoi.dev"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "astrotomic/laravel-translatable": "^11.16"
+    },
+    "autoload": {
+        "psr-4": {
+            "Packages\\Content\\Src\\": "src/",
+            "Packages\\Content\\Database\\": "database/",
+            "Packages\\Content\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Packages\\Content\\Src\\Providers\\ContentServiceProvider"
+            ]
+        }
+    }
+}

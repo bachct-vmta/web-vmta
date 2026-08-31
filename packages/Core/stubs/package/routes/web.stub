@@ -1,0 +1,13 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| {{package_name}} Web Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::prefix('{{package_lower}}')->name('{{package_lower}}.')->group(function () {
+    // Add your web routes here
+});

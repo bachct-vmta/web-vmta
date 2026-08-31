@@ -1,0 +1,24 @@
+<?php
+
+return [
+    // {{package_name}} permissions
+    [
+        'name' => '{{package_name}}',
+        'flag' => '{{package_lower}}.index',
+    ],
+    [
+        'name' => 'Create',
+        'flag' => '{{package_lower}}.create',
+        'parent_flag' => '{{package_lower}}.index',
+    ],
+    [
+        'name' => 'Edit',
+        'flag' => '{{package_lower}}.edit',
+        'parent_flag' => '{{package_lower}}.index',
+    ],
+    [
+        'name' => 'Delete',
+        'flag' => '{{package_lower}}.delete',
+        'parent_flag' => '{{package_lower}}.index',
+    ],
+];

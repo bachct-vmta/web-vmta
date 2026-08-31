@@ -1,0 +1,79 @@
+<?php
+
+namespace Packages\{{package_name}}\Src\Providers;
+
+use Illuminate\Support\ServiceProvider;
+use Packages\Core\Src\Traits\LoadAndPublishDataTrait;
+use Packages\Core\Src\Services\SidebarService;
+use Packages\Core\Src\Services\SidebarItem;
+use Packages\Core\Src\Services\PermissionService;
+use Packages\{{package_name}}\Src\Repositories\Eloquent\{{model_name}}Repository;
+use Packages\{{package_name}}\Src\Repositories\Interfaces\{{model_name}}RepositoryInterface;
+use Packages\{{package_name}}\Src\Services\{{model_name}}Service;
+
+class {{package_name}}ServiceProvider extends ServiceProvider
+{
+    use LoadAndPublishDataTrait;
+
+    /**
+     * Register services.
+     */
+    public function register(): void
+    {
+        // ⚠️ BẮT BUỘC: Đăng ký Repository
+        $this->app->singleton({{model_name}}Repository::class);
+        $this->app->bind({{model_name}}RepositoryInterface::class, {{model_name}}Repository::class);
+
+        // Đăng ký Service
+        $this->app->singleton({{model_name}}Service::class);
+    }
+
+    /**
+     * Bootstrap services.
+     */
+    public function boot(): void
+    {
+        $this->setNamespace('{{package_name}}')
+            ->loadMigrations()
+            ->loadAndPublishViews()
+            ->loadRoutes(['web', 'admin'])
+            ->loadAndPublishTranslations();
+
+        // Đăng ký permissions
+        $this->registerPermissions();
+
+        // Đăng ký sidebar items
+        $this->registerSidebarItems();
+    }
+
+    /**
+     * Register permissions for this package
+     */
+    protected function registerPermissions(): void
+    {
+        if (class_exists(PermissionService::class)) {
+            $permissionsPath = $this->getBasePath() . '/configs/permissions.php';
+            
+            if (file_exists($permissionsPath)) {
+                app(PermissionService::class)->registerPermissions(require $permissionsPath);
+            }
+        }
+    }
+
+    /**
+     * Register sidebar items for this package
+     */
+    protected function registerSidebarItems(): void
+    {
+        $sidebar = app(SidebarService::class);
+
+        $sidebar->registerItem(new SidebarItem(
+            name: '{{package_name}}',
+            route: 'admin.{{package_lower}}.index',
+            icon: '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>',
+            permission: '{{package_lower}}.index',
+            priority: 100,
+            activeRoutePattern: 'admin.{{package_lower}}.*'
+        ));
+    }
+}

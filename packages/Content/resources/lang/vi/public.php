@@ -1,0 +1,46 @@
+<?php
+
+return [
+    'news_heading' => 'Tin tức',
+    'recently_viewed_heading' => 'Nội dung bạn đã xem',
+    'no_posts_yet' => 'Chưa có bài viết nào.',
+    'categories_heading' => 'Chuyên mục',
+    'all_categories' => 'Tất cả',
+    'tags_heading' => 'Thẻ',
+    'latest_posts_heading' => 'Tin tức nổi bật',
+    'latest_posts_subtitle' => 'Những bài viết đang được quan tâm',
+    'see_all' => 'Xem tất cả',
+
+    'home_meta_title' => 'Liên minh Du lịch Y tế Việt Nam',
+    'about_meta_title' => 'Giới thiệu VMTA',
+    'home_meta_description' => 'Vietnam Medical Tourism Alliance — chuyên khoa, bệnh viện, gói khám, tư vấn du lịch y tế.',
+    'news_meta_title' => 'Tin tức',
+    'news_meta_description' => 'Cập nhật mới nhất về y tế, du lịch và mạng lưới liên minh VMTA.',
+    'achievement_meta_title' => 'Thành tựu y khoa tiêu biểu tại Việt Nam',
+
+    'alliance' => [
+        'meta_title'        => 'Mạng lưới Liên minh Du lịch Y tế',
+        'meta_description'  => 'Mạng lưới liên minh các bệnh viện, khu nghỉ dưỡng và đối tác chiến lược trong hệ sinh thái Du lịch Y tế VMTA.',
+        'breadcrumb_home'   => 'Trang chủ',
+        'breadcrumb_label'  => 'Mạng lưới liên minh',
+        'hero_title'        => 'Mạng lưới Liên minh Du lịch Y tế VMTA',
+        'hero_subtitle'     => 'Hệ sinh thái kết nối các bệnh viện, khu nghỉ dưỡng và đối tác chiến lược',
+        'overview_title'    => 'TỔNG QUAN MẠNG LƯỚI',
+        'overview_subtitle' => 'VMTA – Liên minh Du lịch Y tế Việt Nam',
+        'standards_title'   => 'TIÊU CHUẨN LIÊN MINH',
+        'map_title'         => 'BẢN ĐỒ MẠNG LƯỚI',
+        'join_title'        => 'Tham Gia Liên Minh',
+        'join_intro'        => 'Đăng ký trở thành đối tác của mạng lưới VMTA. Đội ngũ chúng tôi sẽ liên hệ trong thời gian sớm nhất.',
+        'form' => [
+            'name'         => 'Họ và tên',
+            'email'        => 'Email',
+            'phone'        => 'Số điện thoại',
+            'industry'     => 'Lĩnh vực hoạt động',
+            'company_name' => 'Tên đơn vị / doanh nghiệp',
+            'message'      => 'Nội dung đề xuất',
+            'consent'      => 'Tôi đồng ý cho VMTA liên hệ và xử lý thông tin theo chính sách bảo mật',
+            'submit'       => 'Gửi đăng ký',
+            'thank_you'    => 'Cảm ơn bạn! Chúng tôi đã nhận được đăng ký.',
+        ],
+    ],
+];

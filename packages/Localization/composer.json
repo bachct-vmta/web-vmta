@@ -1,0 +1,29 @@
+{
+    "name": "packages/localization",
+    "description": "VMTA Localization package — i18n config, locale middleware, language switcher (wraps mcamara/laravel-localization + astrotomic/laravel-translatable)",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nguyên Khôi",
+            "email": "admin@nguyenkhoi.dev"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "mcamara/laravel-localization": "^2.3",
+        "astrotomic/laravel-translatable": "^11.16"
+    },
+    "autoload": {
+        "psr-4": {
+            "Packages\\Localization\\Src\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Packages\\Localization\\Src\\LocalizationServiceProvider"
+            ]
+        }
+    }
+}

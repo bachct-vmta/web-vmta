@@ -1,0 +1,29 @@
+{
+    "name": "packages/newsletter",
+    "description": "VMTA Newsletter — double opt-in email subscribers list with admin management.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nguyên Khôi",
+            "email": "admin@nguyenkhoi.dev"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "spatie/laravel-honeypot": "^4.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Packages\\Newsletter\\Src\\": "src/",
+            "Packages\\Newsletter\\Database\\": "database/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Packages\\Newsletter\\Src\\Providers\\NewsletterServiceProvider"
+            ]
+        }
+    }
+}

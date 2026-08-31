@@ -1,0 +1,27 @@
+{
+    "name": "packages/site",
+    "description": "VMTA Site package — public Blade layout + Tailwind/Alpine entry assets (no models)",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nguyên Khôi",
+            "email": "admin@nguyenkhoi.dev"
+        }
+    ],
+    "require": {
+        "php": "^8.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Packages\\Site\\Src\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Packages\\Site\\Src\\SiteServiceProvider"
+            ]
+        }
+    }
+}

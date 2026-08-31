@@ -1,0 +1,42 @@
+<?php
+
+namespace Packages\{{package_name}}\Src\Models;
+
+use Packages\Core\Src\Models\BaseModel;
+
+class {{model_name}} extends BaseModel
+{
+    /**
+     * The table associated with the model.
+     */
+    protected $table = '{{table_name}}';
+
+    /**
+     * The attributes that are mass assignable.
+     */
+    protected $fillable = [
+        'name',
+    ];
+
+    /**
+     * The attributes that should be cast.
+     */
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
+
+    /**
+     * Fields that can be filtered
+     */
+    protected array $filterable = [
+        'status',
+    ];
+
+    /**
+     * Fields that can be searched
+     */
+    protected array $searchable = [
+        'name',
+    ];
+}

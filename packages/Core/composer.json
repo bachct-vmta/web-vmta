@@ -1,0 +1,30 @@
+{
+    "name": "packages/core",
+    "description": "Core package for SMM Panel - Base models, services, auth, RBAC",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nguyên Khôi",
+            "email": "admin@nguyenkhoi.dev"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "masbug/flysystem-google-drive-ext": "^2.0",
+        "google/apiclient": "^2.18"
+    },
+    "autoload": {
+        "psr-4": {
+            "Packages\\Core\\Src\\": "src/",
+            "Packages\\Core\\Database\\": "database/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Packages\\Core\\Src\\Providers\\CoreServiceProvider"
+            ]
+        }
+    }
+}

@@ -1,0 +1,55 @@
+<?php
+
+namespace Packages\{{package_name}}\Src\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class {{model_name}}Request extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     */
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     */
+    public function rules(): array
+    {
+        $rules = [
+            'name' => ['required', 'string', 'max:255'],
+            'status' => ['sometimes', 'string', 'in:active,inactive'],
+        ];
+
+        // Thêm rules cho update (bỏ qua unique của chính record)
+        if ($this->isMethod('PUT') || $this->isMethod('PATCH')) {
+            // Modify rules for update if needed
+        }
+
+        return $rules;
+    }
+
+    /**
+     * Get custom attributes for validator errors.
+     */
+    public function attributes(): array
+    {
+        return [
+            'name' => __('{{package_lower}}::fields.name'),
+            'status' => __('{{package_lower}}::fields.status'),
+        ];
+    }
+
+    /**
+     * Get custom messages for validator errors.
+     */
+    public function messages(): array
+    {
+        return [
+            'name.required' => __('{{package_lower}}::validation.name_required'),
+        ];
+    }
+}

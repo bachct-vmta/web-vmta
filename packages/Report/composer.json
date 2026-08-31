@@ -1,0 +1,31 @@
+{
+    "name": "packages/report",
+    "description": "VMTA Report — pageview/lead/chatbot metric rollup + admin dashboard.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nguyên Khôi",
+            "email": "admin@nguyenkhoi.dev"
+        }
+    ],
+    "require": {
+        "php": "^8.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Packages\\Report\\Src\\": "src/",
+            "Packages\\Report\\Database\\": "database/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Packages\\Report\\Src\\Providers\\ReportServiceProvider"
+            ],
+            "aliases": {
+                "Report": "Packages\\Report\\Src\\Facades\\Report"
+            }
+        }
+    }
+}
