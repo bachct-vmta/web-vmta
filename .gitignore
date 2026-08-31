@@ -26,7 +26,6 @@ Thumbs.db
 # Dump CSDL chứa dữ liệu khách, không bao giờ commit
 *.sql
 /storage/
-/public/uploads/
 /source-code/
 /source-code.zip
 *.zip
