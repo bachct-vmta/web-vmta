@@ -1,0 +1,42 @@
+{
+  "name": "vmta-web-v2",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev -p 3006",
+    "build": "prisma generate && next build",
+    "start": "next start",
+    "lint": "next lint",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.4.1",
+    "axios": "^1.11.0",
+    "chart.js": "^4.5.1",
+    "clsx": "^2.1.1",
+    "dompurify": "^3.4.5",
+    "hls.js": "^1.6.16",
+    "lucide-react": "^0.475.0",
+    "marked": "^18.0.4",
+    "next": "^15.1.7",
+    "next-intl": "^3.26.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "swiper": "^11.2.4",
+    "tailwind-merge": "^3.0.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.0.0",
+    "@types/dompurify": "^3.2.0",
+    "@types/node": "^22.13.4",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "autoprefixer": "^10.5.4",
+    "postcss": "^8.5.26",
+    "prisma": "^6.4.1",
+    "tailwindcss": "^3.4.19",
+    "typescript": "^5.7.3"
+  }
+}

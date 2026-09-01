@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[x-cloak] {
+  display: none !important;
+}
+
+html, body, h1, h2, h3, h4, h5, h6, input, textarea, select, button, .font-sharp-bo, .font-utm-helve, .font-sans {
+  font-family: var(--font-be-vietnam), "Be Vietnam Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  color: #334155;
+  background-color: #ffffff;
+}
+
+.vmta-header-logo {
+  width: 140px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.ss-footer .fill img {
+  opacity: 0.2;
+  transform: scale(1.5);
+}
+
+.custom-post-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 849px) {
+  .custom-post-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 549px) {
+  .custom-post-grid { grid-template-columns: 1fr; }
+}
+
+.post-item {
+  background: #fff;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: 0.3s;
+}
+.post-item:hover { transform: translateY(-5px); }
+
+.post-thumb img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 0.75rem;
+}
