@@ -12,6 +12,9 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'No file uploaded' }, { status: 400 });
     }
 
+    const appEnv = process.env.APP_ENV || 'development';
+    const useCloudStorage = process.env.USE_CLOUD_STORAGE === 'true' || appEnv === 'production';
+
     const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
     const uploadPreset = process.env.CLOUDINARY_UPLOAD_PRESET;
     const apiKey = process.env.CLOUDINARY_API_KEY;
@@ -19,8 +22,8 @@ export async function POST(req: Request) {
     let fileUrl = '';
     let isCloud = false;
 
-    // OPTION 2: Upload to Cloud Storage Cloudinary CDN if configured
-    if (cloudName && cloudName !== 'demo' && uploadPreset && uploadPreset !== 'unsigned_preset') {
+    // OPTION 2: Upload to Cloud Storage Cloudinary CDN if configured or in Production mode
+    if (useCloudStorage && cloudName && cloudName !== 'demo' && uploadPreset && uploadPreset !== 'unsigned_preset') {
       try {
         const cloudinaryData = new FormData();
         cloudinaryData.append('file', file);
@@ -40,11 +43,11 @@ export async function POST(req: Request) {
           }
         }
       } catch (cloudErr) {
-        console.warn('Cloudinary upload fallback to local storage:', cloudErr);
+        console.warn('Cloudinary upload error:', cloudErr);
       }
     }
 
-    // Fallback Local Storage
+    // DEV Fallback Local Storage
     if (!fileUrl) {
       const bytes = await file.arrayBuffer();
       const buffer = Buffer.from(bytes);
@@ -60,7 +63,7 @@ export async function POST(req: Request) {
       fileUrl = `/uploads/${safeName}`;
     }
 
-    // Auto-record to MediaAsset table in CSDL
+    // Record to MediaAsset table in CSDL
     try {
       await prisma.$executeRawUnsafe(
         `INSERT INTO MediaAsset (filename, url, mime_type, size_bytes) VALUES (?, ?, ?, ?);`,
@@ -70,7 +73,7 @@ export async function POST(req: Request) {
       console.warn('Failed to insert into MediaAsset table:', dbErr);
     }
 
-    return NextResponse.json({ success: true, url: fileUrl, isCloud });
+    return NextResponse.json({ success: true, url: fileUrl, isCloud, appEnv });
   } catch (error) {
     console.error('Error uploading file:', error);
     return NextResponse.json({ error: 'Failed to upload file' }, { status: 500 });
